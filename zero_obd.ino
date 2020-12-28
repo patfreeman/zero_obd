@@ -221,11 +221,11 @@ String make_json() { // Lame JSON creation
   String ret;
   ret += "{\n";
   ret += "  \"controller\": {\n";
+#if GARAGE_DOOR_OPENER
+  ret += "    \"button\": \"" + String(digitalRead(0)) + "\",\n";
+#endif
   ret += "    \"ip\": \"" + WiFi.localIP().toString() + "\",\n";
   ret += "    \"uptime\": \"" + String(millis()) + "\"\n";
-#if GARAGE_DOOR_OPENER
-  ret += "    \"button\": \"" + String(digitalRead(0)) + "\"\n";
-#endif
   ret += "  },\n";
   ret += "  \"zero\": {\n";
   ret += "    \"fg\": \"" + String(fg) + "\",\n";
