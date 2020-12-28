@@ -1,4 +1,4 @@
-# Zero ODB-II 
+# Zero OBD-II 
 ESP8266 ESP-01 OBD-II Microcontroller for Zero Motorcycles
 Allows you to monitor your Zero Motorcycle's specs (battery voltage, pack voltage, temperatures, etc) through an HTTP interface.
 See [zeromanual](https://zeromanual.com/wiki/How_to_build_a_cable_to_access_the_MBB) for more information about interfacing with the motorcycle.
