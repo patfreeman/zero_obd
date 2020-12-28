@@ -1,14 +1,21 @@
 // Configure these things
+
+// WiFi, cuz we need that.
+const char* wifissid = "ssid";
+const char* wifipsk  = "password";
+
 // Debug: 0 = off. 1 = print debug info to serial port
 // debug should only be used when you can act as the motorcycle
 #define DEBUG 0
+
 // How frequently to poll the OBD-II port for data? 60k = 1m
 #define POLLING_INTERVAL 60000
+
 // Enable the garage door open function for a button on GPIO0
 // https://github.com/patfreeman/garage_door_closer
-#define GARAGE_DOOR_OPENER 1
-const char* wifissid = "ssid";
-const char* wifipsk  = "password";
+// if enabling this, go down to the bottom of this file and update the settings
+#define GARAGE_DOOR_OPENER 0
+
 // End configs
 
 // Debugging print functions
@@ -237,7 +244,7 @@ String make_json() { // Lame JSON creation
 }
 
 #if GARAGE_DOOR_OPENER
-const char *host = "10.0.0.3";
+const char *host = "10.0.0.3"; // IP address of garage door opener
 void toggle() { // Hit the garage door: https://github.com/patfreeman/garage_door_closer
   if (millis() > last_toggle + 5000) { // 5s between button click actions
     last_toggle = millis();
@@ -247,7 +254,7 @@ void toggle() { // Hit the garage door: https://github.com/patfreeman/garage_doo
       client.print(String("GET /status HTTP/1.1\r\n") +
                  "Host: " + host + "\r\n" +
                  "Connection: close\r\n" +
-                 "Authorization: Basic base64_user_password\r\n" +
+                 "Authorization: Basic base64_user_password\r\n" + // Update me
                  "\r\n");
       dprintln("Sent close request to garage door");
     }
